@@ -500,6 +500,37 @@
             renderer.render(scene, camera);
         }
         
+        // Project navigation function
+        function openProject(projectId) {
+            // Define your WebXR project URLs here
+            const projects = {
+                'vr-gallery': 'https://yourusername.github.io/vr-gallery/',
+                'ar-viewer': 'https://yourusername.github.io/ar-viewer/',
+                'space-explorer': 'https://yourusername.github.io/space-explorer/',
+                'particle-lab': 'https://yourusername.github.io/particle-lab/',
+                'physics-playground': 'https://yourusername.github.io/physics-playground/'
+            };
+            
+            const url = projects[projectId];
+            if (url) {
+                // Add a nice transition effect before navigating
+                document.body.style.opacity = '0.7';
+                document.body.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    window.open(url, '_blank'); // Opens in new tab
+                    // Or use window.location.href = url; to navigate in same tab
+                    
+                    // Reset the transition effect
+                    document.body.style.opacity = '1';
+                    document.body.style.transform = 'scale(1)';
+                }, 300);
+            } else {
+                // Fallback for demo purposes
+                alert(`Opening ${projectId}...\n\nReplace the URL in the projects object with your actual WebXR project link!`);
+            }
+        }
+        
         // Initialize the application
         init();
     </script>
