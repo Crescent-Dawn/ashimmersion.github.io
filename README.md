@@ -1,2 +1,277 @@
-# Ashimmersion.github.io
-Testwebsite01
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive 3D Text</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e1e2e, #2d1b69);
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+        
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        #info h1 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        #info p {
+            margin: 5px 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="info">
+            <h1>3D Interactive Text</h1>
+            <p>🖱️ Drag to rotate</p>
+            <p>🔍 Scroll to zoom</p>
+            <p>⚡ Built with Three.js</p>
+        </div>
+        
+        <div id="loading">Loading 3D Text...</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let scene, camera, renderer, textMesh;
+        let mouseX = 0, mouseY = 0;
+        let targetRotationX = 0, targetRotationY = 0;
+        let isMouseDown = false;
+        
+        // Initialize the scene
+        function init() {
+            // Create scene
+            scene = new THREE.Scene();
+            
+            // Create camera
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            document.getElementById('container').appendChild(renderer.domElement);
+            
+            // Create lights
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(10, 10, 5);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+            
+            const pointLight = new THREE.PointLight(0x4ecdc4, 0.5, 100);
+            pointLight.position.set(-10, -10, -5);
+            scene.add(pointLight);
+            
+            // Load font and create text
+            const loader = new THREE.FontLoader();
+            
+            // Create a simple geometric text since we can't load external fonts
+            createGeometricText();
+            
+            // Add event listeners
+            setupControls();
+            
+            // Start animation loop
+            animate();
+        }
+        
+        function createGeometricText() {
+            // Create text using basic geometry since font loading is complex
+            const textGeometry = new THREE.BoxGeometry(4, 1, 0.5);
+            
+            // Create gradient-like material
+            const textMaterial = new THREE.MeshPhongMaterial({
+                color: 0xff6b6b,
+                shininess: 100,
+                specular: 0x4ecdc4
+            });
+            
+            textMesh = new THREE.Mesh(textGeometry, textMaterial);
+            textMesh.castShadow = true;
+            textMesh.receiveShadow = true;
+            scene.add(textMesh);
+            
+            // Add some decorative elements
+            createDecorations();
+            
+            // Hide loading text
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function createDecorations() {
+            // Create floating spheres around the text
+            for (let i = 0; i < 20; i++) {
+                const sphereGeometry = new THREE.SphereGeometry(0.1, 8, 6);
+                const sphereMaterial = new THREE.MeshPhongMaterial({
+                    color: Math.random() * 0xffffff,
+                    transparent: true,
+                    opacity: 0.7
+                });
+                
+                const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+                sphere.position.set(
+                    (Math.random() - 0.5) * 10,
+                    (Math.random() - 0.5) * 6,
+                    (Math.random() - 0.5) * 4
+                );
+                
+                sphere.userData = {
+                    originalPosition: sphere.position.clone(),
+                    phase: Math.random() * Math.PI * 2
+                };
+                
+                scene.add(sphere);
+            }
+        }
+        
+        function setupControls() {
+            const container = document.getElementById('container');
+            
+            // Mouse controls
+            container.addEventListener('mousedown', onMouseDown, false);
+            container.addEventListener('mousemove', onMouseMove, false);
+            container.addEventListener('mouseup', onMouseUp, false);
+            container.addEventListener('wheel', onWheel, false);
+            
+            // Touch controls for mobile
+            container.addEventListener('touchstart', onTouchStart, false);
+            container.addEventListener('touchmove', onTouchMove, false);
+            container.addEventListener('touchend', onTouchEnd, false);
+            
+            // Window resize
+            window.addEventListener('resize', onWindowResize, false);
+        }
+        
+        function onMouseDown(event) {
+            isMouseDown = true;
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        }
+        
+        function onMouseMove(event) {
+            if (isMouseDown) {
+                const deltaX = event.clientX - mouseX;
+                const deltaY = event.clientY - mouseY;
+                
+                targetRotationY += deltaX * 0.01;
+                targetRotationX += deltaY * 0.01;
+                
+                mouseX = event.clientX;
+                mouseY = event.clientY;
+            }
+        }
+        
+        function onMouseUp(event) {
+            isMouseDown = false;
+        }
+        
+        function onWheel(event) {
+            camera.position.z += event.deltaY * 0.01;
+            camera.position.z = Math.max(2, Math.min(10, camera.position.z));
+        }
+        
+        function onTouchStart(event) {
+            if (event.touches.length === 1) {
+                mouseX = event.touches[0].clientX;
+                mouseY = event.touches[0].clientY;
+                isMouseDown = true;
+            }
+        }
+        
+        function onTouchMove(event) {
+            if (event.touches.length === 1 && isMouseDown) {
+                const deltaX = event.touches[0].clientX - mouseX;
+                const deltaY = event.touches[0].clientY - mouseY;
+                
+                targetRotationY += deltaX * 0.01;
+                targetRotationX += deltaY * 0.01;
+                
+                mouseX = event.touches[0].clientX;
+                mouseY = event.touches[0].clientY;
+            }
+            event.preventDefault();
+        }
+        
+        function onTouchEnd(event) {
+            isMouseDown = false;
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Smooth rotation
+            if (textMesh) {
+                textMesh.rotation.y += (targetRotationY - textMesh.rotation.y) * 0.05;
+                textMesh.rotation.x += (targetRotationX - textMesh.rotation.x) * 0.05;
+                
+                // Add subtle floating animation
+                textMesh.position.y = Math.sin(Date.now() * 0.001) * 0.1;
+            }
+            
+            // Animate decorative spheres
+            scene.children.forEach((child, index) => {
+                if (child.geometry && child.geometry.type === 'SphereGeometry') {
+                    const time = Date.now() * 0.001;
+                    child.position.y = child.userData.originalPosition.y + Math.sin(time + child.userData.phase) * 0.5;
+                    child.rotation.x += 0.01;
+                    child.rotation.y += 0.02;
+                }
+            });
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Start the application
+        init();
+    </script>
+</body>
+</html>
