@@ -337,7 +337,7 @@
             'vr-gallery': 'https://yourusername.github.io/vr-gallery/',
             'ar-viewer': 'https://yourusername.github.io/ar-viewer/',
             'physics-playground': 'https://yourusername.github.io/physics-playground/',
-            'space-explorer': ['https://yourusername.github.io/space-explorer/'](https://crescent-dawn.github.io/orbitaltrajcalc1.github.io/)
+            'space-explorer': (https://crescent-dawn.github.io/orbitaltrajcalc1.github.io/)
         };
         
         function openProject(projectId) {
