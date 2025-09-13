@@ -281,7 +281,7 @@
                     Here's a collection of all of the cool things I've worked on in the past!
                 </p>
                 <p>
-                    I hope you enjoy!
+                    Have fun playing around with them, and I hope you enjoy!
                 </p>
             </div>
         </section>
