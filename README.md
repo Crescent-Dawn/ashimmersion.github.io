@@ -294,10 +294,10 @@
         <section class="projects-section">
             <h2>🚀 Explore My Projects</h2>
             <div class="projects-grid">
-                <button class="project-button" onclick="openProject('particle-simulator')">
+                <button class="project-button" onclick="openProject('Orbital Trajectory Simulator')">
                     <span class="project-icon">🌌</span>
-                    <div class="project-title">Particle Simulator</div>
-                    <div class="project-description">Interactive 3D particle system with real-time physics and multiple animation modes</div>
+                    <div class="project-title">Orbital Trajectory Simulator</div>
+                    <div class="project-description">This thingy shows how to make things into orbit!</div>
                 </button>
                 
                 <button class="project-button" onclick="openProject('3d-text')">
