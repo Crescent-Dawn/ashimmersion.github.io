@@ -336,7 +336,7 @@
             '3d-text': 'https://yourusername.github.io/3d-text/',
             'vr-gallery': 'https://yourusername.github.io/vr-gallery/',
             'ar-viewer': 'https://yourusername.github.io/ar-viewer/',
-            'physics-playground': '[https://yourusername.github.io/physics-playground/](https://crescent-dawn/orbitaltrajcalc1.github.io/)',
+            'physics-playground': '[https://yourusername.github.io/physics-playground/]([https://crescent-dawn/orbitaltrajcalc1.github.io/](https://crescent-dawn.github.io/orbitaltrajcalc1.github.io/))',
             'space-explorer': 'https://yourusername.github.io/space-explorer/'
         };
         
