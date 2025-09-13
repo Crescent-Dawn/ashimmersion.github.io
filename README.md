@@ -336,8 +336,8 @@
     <script>
         // Project URLs - Replace with your actual GitHub Pages URLs
         const projects = {
-            'particle-simulator': 'https://crescent-dawn.github.io/orbitaltrajcalc1.github.io/',
-            '3d-text': 'https://yourusername.github.io/3d-text/',
+            'particle-simulator': https://crescent-dawn.github.io/orbitaltrajcalc1.github.io/,
+            '3d-text': 'https://crescent-dawn.github.io/3d-text/',
             'vr-gallery': 'https://yourusername.github.io/vr-gallery/',
             'ar-viewer': 'https://yourusername.github.io/ar-viewer/',
             'physics-playground': 'https://yourusername.github.io/physics-playground/',
