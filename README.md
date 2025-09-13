@@ -332,7 +332,7 @@
     <script>
         // Project URLs - Replace with your actual GitHub Pages URLs
         const projects = {
-            'particle-simulator': 'https://yourusername.github.io/particle-simulator/',
+            'particle-simulator': '[https://yourusername.github.io/particle-simulator/](https://github.com/Crescent-Dawn/orbitaltrajcalc1.github.io)',
             '3d-text': 'https://yourusername.github.io/3d-text/',
             'vr-gallery': 'https://yourusername.github.io/vr-gallery/',
             'ar-viewer': 'https://yourusername.github.io/ar-viewer/',
