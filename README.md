@@ -276,15 +276,15 @@
         <!-- Header Section with Text -->
         <section class="header-section">
             <div class="content-block">
-                <h1>Hello! Welcome to My Interactive World</h1>
+                <h1>Welcome to My Interactive World</h1>
                 <p>
-                    Here's all of my <span class="highlight">really cool things!</span> built with modern web technologies. 
+                    Explore a collection of <span class="highlight">cutting-edge 3D experiences</span> built with modern web technologies. 
                     From mesmerizing particle systems to immersive WebXR environments, each project showcases the power of 
                     <span class="highlight">interactive web development</span>.
                 </p>
                 <p>
                     Dive into worlds where physics comes alive, particles dance to your commands, and virtual reality 
-                    meets the web browser. Every experience is crafted with <span class="highlight">webxr, WebGL, and creative coding!</span> 
+                    meets the web browser. Every experience is crafted with <span class="highlight">Three.js, WebGL, and creative coding</span> 
                     to push the boundaries of what's possible in a web browser.
                 </p>
             </div>
@@ -294,10 +294,10 @@
         <section class="projects-section">
             <h2>🚀 Explore My Projects</h2>
             <div class="projects-grid">
-                <button class="project-button" onclick="openProject('Orbital Trajectory Simulator')">
+                <button class="project-button" onclick="openProject('particle-simulator')">
                     <span class="project-icon">🌌</span>
-                    <div class="project-title">Orbital Trajectory Simulator</div>
-                    <div class="project-description">This thingy shows how to make things into orbit!</div>
+                    <div class="project-title">Particle Simulator</div>
+                    <div class="project-description">Interactive 3D particle system with real-time physics and multiple animation modes</div>
                 </button>
                 
                 <button class="project-button" onclick="openProject('3d-text')">
@@ -336,8 +336,8 @@
     <script>
         // Project URLs - Replace with your actual GitHub Pages URLs
         const projects = {
-            'particle-simulator': https://crescent-dawn.github.io/orbitaltrajcalc1.github.io/,
-            '3d-text': 'https://crescent-dawn.github.io/3d-text/',
+            'particle-simulator': 'https://yourusername.github.io/particle-simulator/',
+            '3d-text': 'https://yourusername.github.io/3d-text/',
             'vr-gallery': 'https://yourusername.github.io/vr-gallery/',
             'ar-viewer': 'https://yourusername.github.io/ar-viewer/',
             'physics-playground': 'https://yourusername.github.io/physics-playground/',
