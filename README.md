@@ -15,7 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: white;
-            background: linear-gradient(135deg, #ffc000 0%, #764ba2 50%, #04d9ff 100%);
+            background: linear-gradient(135deg, #ffc000 0%, #764ba2 60%, #04d9ff 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -337,7 +337,7 @@
             'vr-gallery': 'https://yourusername.github.io/vr-gallery/',
             'ar-viewer': 'https://yourusername.github.io/ar-viewer/',
             'physics-playground': 'https://yourusername.github.io/physics-playground/',
-            'space-explorer': 'https://yourusername.github.io/space-explorer/'
+            'space-explorer': ['https://yourusername.github.io/space-explorer/'](https://crescent-dawn.github.io/orbitaltrajcalc1.github.io/)
         };
         
         function openProject(projectId) {
