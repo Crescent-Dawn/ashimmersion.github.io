@@ -276,16 +276,12 @@
         <!-- Header Section with Text -->
         <section class="header-section">
             <div class="content-block">
-                <h1>Welcome to My Interactive World</h1>
+                <h1>Hi! I'm Abraham!</h1>
                 <p>
-                    Explore a collection of <span class="highlight">cutting-edge 3D experiences</span> built with modern web technologies. 
-                    From mesmerizing particle systems to immersive WebXR environments, each project showcases the power of 
-                    <span class="highlight">interactive web development</span>.
+                    Here's a collection of all of the cool things I've worked on in the past!
                 </p>
                 <p>
-                    Dive into worlds where physics comes alive, particles dance to your commands, and virtual reality 
-                    meets the web browser. Every experience is crafted with <span class="highlight">Three.js, WebGL, and creative coding</span> 
-                    to push the boundaries of what's possible in a web browser.
+                    I hope you enjoy!
                 </p>
             </div>
         </section>
